@@ -1,0 +1,73 @@
+\documentclass[11pt, a4paper]{article}
+
+% Geometria e margini della pagina
+\usepackage[a4paper, margin=2.5cm]{geometry}
+
+% Pacchetti standard per fisica, formule ed elenchi
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\setlist[itemize]{label=-}
+\usepackage{booktabs}
+
+% Collegamenti ipertestuali
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue]{hyperref}
+
+% Dati per l'intestazione
+\title{\textbf{Verifica della resistenza interna di una lampadina ad incandescenza}}
+\author{
+    \textbf{Studenti: Bressan Eddi, Feoli Francesco, Rosa Carlotta}
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Obiettivo dell'Esperienza}
+Descrivere brevemente lo scopo della prova (ad esempio la verifica sperimentale di una legge fisica o la misura di una costante, es. $g$).
+
+\section{Cenni Teorici}
+Esposizione sintetica delle equazioni e dei principi fisici alla base dell'esperienza:
+\begin{equation}
+    T = 2\pi \sqrt{\frac{l}{g}}
+\end{equation}
+dove $T$ rappresenta il periodo di oscillazione, $l$ la lunghezza del filo e $g$ l'accelerazione di gravità.
+
+\section{Strumentazione Utilizzata}
+\begin{itemize}
+    \item \textbf{Cronometro digitale:} sensibilità $\pm 0{,}01\,\text{s}$
+    \item \textbf{Metro a nastro:} sensibilità $\pm 1\,\text{mm}$
+    \item \textbf{Massa e filo inestensibile}
+\end{itemize}
+
+\section{Dati Sperimentali e Misure}
+I valori rilevati durante le prove sono riportati nella seguente tabella riassuntiva:
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{cccc}
+        \toprule
+        \textbf{Misura n.} & \textbf{Lunghezza $l$ (m)} & \textbf{Tempo $10T$ (s)} & \textbf{Periodo $T$ (s)} \\
+        \midrule
+        1 & $0{,}800 \pm 0{,}001$ & $17{,}95 \pm 0{,}01$ & $1{,}795 \pm 0{,}001$ \\
+        2 & $0{,}800 \pm 0{,}001$ & $17{,}92 \pm 0{,}01$ & $1{,}792 \pm 0{,}001$ \\
+        3 & $0{,}800 \pm 0{,}001$ & $17{,}98 \pm 0{,}01$ & $1{,}798 \pm 0{,}001$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Raccolta delle misure sperimentali.}
+\end{table}
+
+\section{Elaborazione dei Dati e Propagazione degli Errori}
+Calcolo del valore medio e stima dell'incertezza associata:
+\begin{equation}
+    \bar{T} = \frac{1}{N} \sum_{i=1}^{N} T_i
+\end{equation}
+Ricavando l'accelerazione di gravità dalla formula inversa:
+\begin{equation}
+    g = \frac{4\pi^2 l}{T^2} = (9{,}81 \pm 0{,}05)\,\text{m/s}^2
+\end{equation}
+
+\section{Conclusioni e Discussione dei Risultati}
+Breve commento sulla compatibilità del risultato ottenuto rispetto al valore atteso teorico, analizzando eventuali fonti di errore sistematico o casuale.
+
+\end{document}
