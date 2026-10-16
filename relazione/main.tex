@@ -1,14 +1,14 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,11pt]{article}
 
 % Pacchetti fondamentali
 \usepackage[utf8]{inputenc}             % Codifica caratteri
 \usepackage{babel}
-\babelprovide[import, main]{italian}    % Lingua italiana (gestisce anche "Indice")
+\babelprovide[import, main]{italian}    % Lingua italiana
 \usepackage{amsmath, amssymb}           % Formule matematiche avanzate
-\usepackage{graphicx}                    % Inserimento immagini
-\usepackage{geometry}                    % Gestione margini
-\geometry{margin=2.5cm}
-\usepackage{booktabs}                    % Tabelle professionali
+\usepackage{graphicx}                   % Inserimento immagini
+\usepackage{geometry}                   % Gestione margini
+\geometry{margin=2.2cm}
+\usepackage{booktabs}                   % Tabelle professionali
 \usepackage{physics}
 \usepackage{bm}
 \usepackage{caption}
@@ -16,7 +16,7 @@
 \usepackage{parskip}
 \usepackage{float}
 
-% Collegamenti ipertestuali (testo nero uniforme, no link blu sparati)
+% Collegamenti ipertestuali
 \usepackage[colorlinks=true, linkcolor=black, urlcolor=blue]{hyperref}
 
 % Dati del documento
@@ -31,69 +31,126 @@
 \newpage
 
 \section{Scopo dell'esperienza}
-Con la seguente esperienza si vuole verificare entro quali limiti la lampadina segua la legge
-di Ohm, e verificare che andamento segua in regime non Ohmico.
+Lo scopo dell'esperienza consiste nel determinare la curva caratteristica tensione-corrente ($I$-$V$) di una lampadina a incandescenza a bassa tensione, verificando entro quali limiti segua la legge di Ohm e studiandone l'andamento nei regimi non lineari fino alla rottura del filamento, valutando inoltre l'andamento della resistenza dinamica.
+
 \section{Cenni Teorici}
-% Inserire qui il modello teorico, le equazioni della resistenza e le relazioni di base
-Noi sappiamo che in un circuito ideale vale la legge di Ohm:
+In un conduttore ohmico ideale la tensione applicata $V$ e la corrente circolante $I$ sono legate linearmente dalla legge di Ohm ($V = R \, I$). Tale relazione perde di validità all'aumentare della potenza dissipata per effetto Joule ($W = V I$). Nel filamento di tungsteno della lampadina, l'aumento della temperatura $T$ induce una variazione della resistività secondo la legge empirica $\rho \propto \mu T^\eta$ (con $\eta \simeq 1.334$ per le leghe di tungsteno), da cui:
 \begin{equation*}
-    V = I  R
+    R = \frac{V}{I} \propto T^\eta
 \end{equation*}
-Tale legge empirica perde di valore con l'aumentare delle energie dissipative, nel nostro
-caso il filamento di acciaio tungstenato con l'aumentare della temperatura subirà una variazione
-della propria resistenza interna e successivamente un passaggio di fase, causato proprio
-dal calore sprigionato per effetto Joule.
+Per la legge di Stefan-Boltzmann, la potenza irradiata dal filamento a temperatura $T \gg T_0$ (con $T_0$ temperatura ambiente) è approssimabile come:
+\begin{equation*}
+    W = e \sigma A (T^4 - T_0^4) \approx e \sigma A T^4 \implies W = V I \propto T^4
+\end{equation*}
+Combinando le due relazioni si ottiene l'andamento teorico nel regime di emissione radiativa:
+\begin{equation*}
+    I \propto V^{\frac{4-\eta}{4+\eta}} \simeq V^{0.499} \approx V^{1/2}
+\end{equation*}
+Per studiare localmente la variazione di pendenza della curva caratteristica si definisce la \textbf{resistenza dinamica} $R_d = \dv*{V}{I}$, stimabile sperimentalmente su intervalli discreti tramite il rapporto incrementale:
+\begin{equation*}
+    R_{d,i} = \frac{\Delta V_i}{\Delta I_i} = \frac{V_{i+1} - V_i}{I_{i+1} - I_i}
+\end{equation*}
 
-Ci aspettiamo quindi che per tensioni basse, alle quali corrisponde un intensità di corrente
-altrettanto bassa, un andamento lineare, quindi in linea con l'andamento di un circuito Ohmico,
-dopo una tensione di circa 0.6V dovremmo notare un discostamento da tale andamento, in particolare come possiamo
-ricavare dalla definizione di resistenza e dalla equazione per la propagazione del calore
-di Boltzmann, un andamanto pari a:
-\begin{equation*}
-    I \propto V^{1/2}
-\end{equation*}
 \section{Setup Sperimentale e Strumentazione}
-% Descrizione del circuito, strumenti usati (voltmetro, amperometro, alimentatore) e sensibilità
-Il circuito è composto da:
+Il circuito realizzato utilizza i seguenti componenti:
 \begin{itemize}
-    \item Alimentatore da banco digitale;
-    \item Lampadina ad incandescenza;
-    \item Resistenza da 100 $\Omega$ nominali;
-    \item Diodo fotoelettrico;
+    \item Alimentatore da banco in c.c. a tensione regolabile;
+    \item Lampadina a incandescenza a bassa tensione con portalampada;
+    \item Resistenza da $100\ \Omega$ nominali;
+    \item Fotodiodo schermato con scatoletta opaca e nastro isolante nero;
+    \item Tre multimetri digitali: un voltmetro in parallelo alla lampadina ($V$), un amperometro in serie alla lampadina ($I$) e un amperometro collegato al fotodiodo ($I_{fd}$).
 \end{itemize}
 
-Per la misurazione delle grandezze del circuito abbiamo utilizzato:
-\begin{itemize}
-    \item Voltmetro digitale per la tensione del alimentatore;
-    \item Amperometro digitale per la corrente del circuito;
-    \item Amperometro digitale per la corrente del diodo;
-\end{itemize}
+\subsection*{Procedura operativa}
+\textbf{Prima fase (Misure 1--30, fino a $V = 0.598\text{ V}$):} La lampadina è stata collegata in serie alla resistenza da $100\ \Omega$ per partizionare la tensione del generatore e consentire variazioni di d.d.p. molto ridotte ai capi del filamento. Il gruppo lampadina-fotodiodo è stato isolato otticamente dall'esterno per individuare tramite $I_{fd}$ l'innesco dell'emissione luminosa.
 
-Per la prima fase dell'esperienza il nostro circuito seguiva il seguente schema:
-METTI IMMAGINE SCHEMA ELETTRICO CIRCUITO 1
+% INSERIRE QUI SCHEMA CIRCUITO 1
 
-In questa fase la lampadina è stata ben isolata col diodo, in modo che l'unica luce rilevata
-dal fotodiodo sia quella emessa dalla lampadina.
-Con il relativo amperometro andiamo a misurare l'intensità di corrente emessa dal diodo, in modo da
-poter capire con precisione quanto la lampadina inizia ad emettere luce.
+\textbf{Seconda e Terza fase (Misure 31--86, da $0.598\text{ V}$ a $17.02\text{ V}$):} Rilevata una netta emissione luminosa a $V = 0.598\text{ V}$, il fotodiodo è stato scollegato per evitare saturazione o danneggiamenti termici, ed è stata rimossa la resistenza da $100\ \Omega$ in serie. La tensione è stata quindi incrementata con step maggiori ($\sim 0.3\text{ V}$) fino alla fusione del filamento.
 
-Inoltre è stata messa in serie una resistenza in modo da poter variare la tensione fornita
-dall'alimentatore con step molto più bassi, così da poter prendere più coppie di dati per l'analisi successiva.
-
-Nella fase successiva, una volta che ha iniziato ad emettere luce abbiamo cambiato il circuito nel seguente modo:
-METTI IMMAGINE SCHEMA ELETTRICO CIRCUITO 2
-
-Qui procediamo ad aumentare la tensione con step maggiore, fino a bruciare la lampadina.
-
-
+% INSERIRE QUI SCHEMA CIRCUITO 2
 
 \section{Dati Sperimentali}
-% Tabelle con le misure raccolte (tensioni, correnti, ecc.)
+Le incertezze di misura sono state valutate a partire dalla risoluzione strumentale $\Delta x$ del multimetro (variabile in base al range di misura attivo durante l'esperienza), assumendo una distribuzione di probabilità uniforme:
+\begin{equation*}
+    \sigma_x = \frac{\Delta x}{\sqrt{12}} = \frac{\Delta x}{2\sqrt{3}}
+\end{equation*}
+Nelle prime 30 misure il fotodiodo ha registrato una corrente di fondo costante pari a $I_{fd} = (0.0265 \pm 0.0003)\text{ mA}$ fino a $V = 0.400\text{ V}$. A partire da $V = 0.422\text{ V}$ ($I_{fd} = 0.038\text{ mA}$) il segnale è cresciuto progressivamente fino a raggiungere $I_{fd} = 0.316\text{ mA}$ a $V = 0.598\text{ V}$. In Tabella \ref{tab:dati} sono riportati i valori misurati di tensione $V$, corrente $I$ e la relativa resistenza dinamica $R_d$.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabular}{ccccccc|ccccccc}
+\toprule
+$n$ & $V$ [V] & $\sigma_V$ [V] & $I$ [A] & $\sigma_I$ [A] & $I_{fd}$ [mA] & $R_d$ [$\Omega$] & $n$ & $V$ [V] & $\sigma_V$ [V] & $I$ [A] & $\sigma_I$ [A] & $R_d$ [$\Omega$] & $\sigma_{R_d}$ [$\Omega$] \\
+\midrule
+1 & 0.023 & 0.0003 & 0.01159 & $3\cdot 10^{-6}$ & 0.021 & $2.04 \pm 0.04$ & 44 & 4.52 & 0.003 & 0.261 & $3\cdot 10^{-4}$ & 30.0 & 1.4 \\
+5 & 0.101 & 0.0003 & 0.04490 & $3\cdot 10^{-6}$ & 0.026 & $3.13 \pm 0.07$ & 48 & 5.69 & 0.003 & 0.297 & $3\cdot 10^{-4}$ & 35.6 & 1.7 \\
+10 & 0.197 & 0.0003 & 0.06780 & $3\cdot 10^{-6}$ & 0.026 & $7.60 \pm 0.21$ & 52 & 6.90 & 0.003 & 0.330 & $3\cdot 10^{-4}$ & 36.3 & 1.9 \\
+15 & 0.297 & 0.0003 & 0.07800 & $3\cdot 10^{-6}$ & 0.027 & $13.5 \pm 0.4$ & 56 & 8.12 & 0.003 & 0.359 & $3\cdot 10^{-4}$ & 40.0 & 2.4 \\
+20 & 0.400 & 0.0003 & 0.08420 & $3\cdot 10^{-6}$ & 0.027 & $22.0 \pm 1.0$ & 60 & 9.27 & 0.003 & 0.386 & $3\cdot 10^{-4}$ & 43.8 & 2.3 \\
+21 & 0.422 & 0.0003 & 0.08520 & $3\cdot 10^{-6}$ & 0.038 & $18.0 \pm 0.8$ & 64 & 10.48 & 0.003 & 0.413 & $3\cdot 10^{-4}$ & 48.6 & 2.9 \\
+25 & 0.500 & 0.0003 & 0.08960 & $3\cdot 10^{-6}$ & 0.070 & $16.9 \pm 0.6$ & 68 & 11.71 & 0.003 & 0.439 & $3\cdot 10^{-4}$ & 51.7 & 3.6 \\
+30 & 0.598 & 0.0003 & 0.09520 & $3\cdot 10^{-6}$ & 0.316 & -- & 72 & 12.95 & 0.003 & 0.462 & $3\cdot 10^{-4}$ & 54.0 & 4.5 \\
+31 & 0.598 & 0.0003 & 0.09350 & $3\cdot 10^{-5}$ & -- & $16.20 \pm 0.04$ & 76 & 14.08 & 0.003 & 0.481 & $3\cdot 10^{-4}$ & 61.7 & 4.3 \\
+34 & 1.500 & 0.0003 & 0.14500 & $3\cdot 10^{-4}$ & -- & $20.5 \pm 0.6$ & 77 & 14.45 & 0.003 & 0.487 & $3\cdot 10^{-4}$ & 270 & 110 \\
+38 & 2.708 & 0.0003 & 0.19700 & $3\cdot 10^{-4}$ & -- & $24.6 \pm 0.8$ & 81 & 15.60 & 0.003 & 0.492 & $3\cdot 10^{-4}$ & -- & -- \\
+41 & 3.610 & 0.0003 & 0.23100 & $3\cdot 10^{-4}$ & -- & $30.1 \pm 1.6$ & 83 & 16.07 & 0.003 & 0.490 & $3\cdot 10^{-4}$ & -70 & 6 \\
+42 & 3.851 & 0.0030 & 0.23900 & $3\cdot 10^{-4}$ & -- & $28.3 \pm 1.1$ & 86 & 17.02 & 0.003 & 0.475 & $3\cdot 10^{-4}$ & -22.3 & 0.8 \\
+\bottomrule
+\end{tabular}
+\caption{Estratto rappresentativo dei dati sperimentali raccolti nei tre regimi operativi (per $\sigma_{I_{fd}}$ vale $3\cdot 10^{-4}\text{ mA}$).}
+\label{tab:dati}
+\end{table}
 
 \section{Analisi Dati e Propagazione degli Errori}
-% Elaborazione dei dati, calcolo delle resistenze, incertezze e grafici
+Per il calcolo della resistenza dinamica $R_{d,i} = \Delta V_i / \Delta I_i$, le incertezze sulle differenze $\Delta V_i = V_{i+1} - V_i$ e $\Delta I_i = I_{i+1} - I_i$ sono state ottenute sommando in quadratura le incertezze delle singole letture:
+\begin{equation*}
+    \sigma_{\Delta V_i} = \sqrt{\sigma_{V_{i+1}}^2 + \sigma_{V_i}^2}, \qquad \sigma_{\Delta I_i} = \sqrt{\sigma_{I_{i+1}}^2 + \sigma_{I_i}^2}
+\end{equation*}
+L'incertezza assoluta $\sigma_{R_{d,i}}$ sulla resistenza dinamica è stata quindi calcolata tramite propagazione quadratica degli errori relativi:
+\begin{equation*}
+    \sigma_{R_{d,i}} = |R_{d,i}| \sqrt{\left(\frac{\sigma_{\Delta V_i}}{\Delta V_i}\right)^2 + \left(\frac{\sigma_{\Delta I_i}}{\Delta I_i}\right)^2}
+\end{equation*}
+
+Dall'analisi dei dati e dei relativi grafici si distinguono nettamente le tre fasi previste dal modello teorico:
+\begin{enumerate}
+    \item \textbf{Prima fase ($0 \le V \le 0.598\text{ V}$):} Per tensioni inferiori a $\sim 0.15\text{ V}$ la curva $I$-$V$ mostra un andamento quasi lineare con resistenza dinamica contenuta ($R_d \approx 2 - 4\ \Omega$). Tra $0.15\text{ V}$ e $0.40\text{ V}$ si osserva un regime transiente in cui il riscaldamento per effetto Joule (con emissione nell'infrarosso non rilevata dal fotodiodo) fa salire rapidamente $R_d$ fino a $\sim 22\ \Omega$. A $V = 0.422\text{ V}$ il fotodiodo inizia a registrare l'emissione nel visibile ($I_{fd}$ passa da $0.027\text{ mA}$ a $0.038\text{ mA}$, fino a $0.316\text{ mA}$ a $0.598\text{ V}$).
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.85\textwidth]{img/grafico_iv_zoom.png} % Sostituisci con il nome del file dello zoom I-V
+        \caption{Zoom della curva $I$-$V$ nella prima fase (transiente iniziale).}
+        \label{fig:iv_zoom}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.85\textwidth]{img/grafico_ifd_v.png} % Sostituisci con il nome del file del fotodiodo
+        \caption{Andamento della corrente del fotodiodo $I_{fd}$ in funzione della tensione $V$.}
+        \label{fig:ifd_v}
+    \end{figure}
+
+    \item \textbf{Seconda fase ($0.598\text{ V} \le V \le 14.08\text{ V}$):} Rimossi la resistenza da $100\ \Omega$ e il fotodiodo (con una lieve discontinuità a $0.598\text{ V}$ dove la corrente passa da $0.0952\text{ A}$ a $0.0935\text{ A}$ per via della modifica circuitale e dell'assestamento termico), la lampadina entra in pieno regime di incandescenza. La curva $I$-$V$ segue con ottimo accordo l'andamento $I \propto V^{1/2}$ e la resistenza dinamica cresce con regolarità da $16.2\ \Omega$ fino a $61.7\ \Omega$, seguendo anch'essa una dipendenza del tipo $R_d \propto V^{1/2}$.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.85\textwidth]{img/grafico_iv_completo.png} % Sostituisci con il nome del file del grafico I-V completo
+        \caption{Curva caratteristica $I$-$V$ completa della lampadina a incandescenza.}
+        \label{fig:iv_compl}
+    \end{figure}
+
+    \item \textbf{Terza fase ($14.45\text{ V} \le V \le 17.02\text{ V}$):} Oltre i $14.4\text{ V}$ la curva $I$-$V$ si appiattisce raggiungendo un picco massimo di corrente $I_{max} = 0.492\text{ A}$ tra $15.60\text{ V}$ e $15.84\text{ V}$ ($\Delta I = 0$, dove $R_d$ diverge), per poi decrescere fino a $0.475\text{ A}$ a $17.02\text{ V}$ appena prima della fusione del filamento. Tale comportamento, evidenziato dai valori negativi di $R_d$, è dovuto alla sublimazione del tungsteno ad alta temperatura, che riduce la sezione efficace del filamento aumentandone drasticamente la resistenza complessiva.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{img/grafico_rd.png} % Sostituisci con il nome del file della resistenza dinamica (o relativo zoom)
+    \caption{Andamento della resistenza dinamica $R_d$ in funzione della tensione $V$ (con dettaglio sul transiente iniziale).}
+    \label{fig:rd}
+\end{figure}
 
 \section{Conclusioni}
-% Commento sui risultati finali e compatibilità con il modello fisico
+L'esperienza ha permesso di verificare con chiarezza il comportamento fortemente non ohmico di una lampadina a incandescenza. L'approssimazione lineare della legge di Ohm risulta valida esclusivamente per tensioni molto basse ($V \lesssim 0.15\text{ V}$), dove la dissipazione termica è trascurabile. Superata la regione transiente e innescata l'emissione luminosa (individuata dal fotodiodo a partire da $V = 0.422\text{ V}$), i dati sperimentali confermano pienamente il modello di irraggiamento di Stefan-Boltzmann ($I \propto V^{1/2}$) fino a circa $14\text{ V}$, oltre i quali i processi irreversibili di sublimazione del filamento conducono all'instabilità della resistenza dinamica e alla rottura per fusione a $V > 17.02\text{ V}$.
 
 \end{document}
