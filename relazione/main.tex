@@ -20,7 +20,7 @@
 \usepackage[colorlinks=true, linkcolor=black, urlcolor=blue]{hyperref}
 
 % Dati del documento
-\title{\textbf{Verifica della resistenza interna di una lampadina ad incandescenza}}
+\title{\textbf{Misura della curva caratteristica di una lampadina a incandescenza}}
 \author{\textbf{Studenti:} Bressan Eddi, Feoli Francesco, Rosa Carlotta}
 \date{\today}
 
@@ -30,11 +30,62 @@
 \tableofcontents
 \newpage
 
+\section{Scopo dell'esperienza}
+Con la seguente esperienza si vuole verificare entro quali limiti la lampadina segua la legge
+di Ohm, e verificare che andamento segua in regime non Ohmico.
 \section{Cenni Teorici}
 % Inserire qui il modello teorico, le equazioni della resistenza e le relazioni di base
+Noi sappiamo che in un circuito ideale vale la legge di Ohm:
+\begin{equation*}
+    V = I  R
+\end{equation*}
+Tale legge empirica perde di valore con l'aumentare delle energie dissipative, nel nostro
+caso il filamento di acciaio tungstenato con l'aumentare della temperatura subirà una variazione
+della propria resistenza interna e successivamente un passaggio di fase, causato proprio
+dal calore sprigionato per effetto Joule.
 
+Ci aspettiamo quindi che per tensioni basse, alle quali corrisponde un intensità di corrente
+altrettanto bassa, un andamento lineare, quindi in linea con l'andamento di un circuito Ohmico,
+dopo una tensione di circa 0.6V dovremmo notare un discostamento da tale andamento, in particolare come possiamo
+ricavare dalla definizione di resistenza e dalla equazione per la propagazione del calore
+di Boltzmann, un andamanto pari a:
+\begin{equation*}
+    I \propto V^{1/2}
+\end{equation*}
 \section{Setup Sperimentale e Strumentazione}
 % Descrizione del circuito, strumenti usati (voltmetro, amperometro, alimentatore) e sensibilità
+Il circuito è composto da:
+\begin{itemize}
+    \item Alimentatore da banco digitale;
+    \item Lampadina ad incandescenza;
+    \item Resistenza da 100 $\Omega$ nominali;
+    \item Diodo fotoelettrico;
+\end{itemize}
+
+Per la misurazione delle grandezze del circuito abbiamo utilizzato:
+\begin{itemize}
+    \item Voltmetro digitale per la tensione del alimentatore;
+    \item Amperometro digitale per la corrente del circuito;
+    \item Amperometro digitale per la corrente del diodo;
+\end{itemize}
+
+Per la prima fase dell'esperienza il nostro circuito seguiva il seguente schema:
+METTI IMMAGINE SCHEMA ELETTRICO CIRCUITO 1
+
+In questa fase la lampadina è stata ben isolata col diodo, in modo che l'unica luce rilevata
+dal fotodiodo sia quella emessa dalla lampadina.
+Con il relativo amperometro andiamo a misurare l'intensità di corrente emessa dal diodo, in modo da
+poter capire con precisione quanto la lampadina inizia ad emettere luce.
+
+Inoltre è stata messa in serie una resistenza in modo da poter variare la tensione fornita
+dall'alimentatore con step molto più bassi, così da poter prendere più coppie di dati per l'analisi successiva.
+
+Nella fase successiva, una volta che ha iniziato ad emettere luce abbiamo cambiato il circuito nel seguente modo:
+METTI IMMAGINE SCHEMA ELETTRICO CIRCUITO 2
+
+Qui procediamo ad aumentare la tensione con step maggiore, fino a bruciare la lampadina.
+
+
 
 \section{Dati Sperimentali}
 % Tabelle con le misure raccolte (tensioni, correnti, ecc.)
